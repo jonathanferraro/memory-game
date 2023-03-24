@@ -2,6 +2,41 @@
   text-align: center;
 }
 
+
+.num-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.num-buttons {
+  width: 80px;
+  height: 50px;
+  padding: 15px 25px;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: gray;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.num-buttons:hover {
+  background-color: #3e8e41;
+}
+
+
+
+
+
+
+
+/*  */
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
