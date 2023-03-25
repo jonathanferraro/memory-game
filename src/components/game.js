@@ -87,7 +87,9 @@ export default function Game() {
 
     // sets array for user selected nums
     const buttonHandler = (e) => {
-        setPlayerNums(prev => [...prev, e.target.value]);
+        const buttonValue = e.target.value;
+        const newPlayerNums = [...playerNums, buttonValue];
+        setPlayerNums(newPlayerNums)
     }
 
     const readyHandler = () => {
@@ -134,13 +136,14 @@ export default function Game() {
                             }
                         }
                         )) :
-                        (nums.map(num => (
-                            <button
-                             className="num-buttons" value={num} onClick={buttonHandler} style={{backgroundColor: playerNums.includes(num) ? "green" : null}}
+                        (nums.map(num => { 
+                            const buttonColor = playerNums.includes(num.toString()) ? "green" : null
+                            return (<button
+                             className="num-buttons" value={num} onClick={buttonHandler} style={{backgroundColor: buttonColor}}
                              >
-                                ??
-                             </button>
-                        )))
+                                {playerNums.includes(num.toString()) ? num : "??"}
+                             </button> )
+                        }))
                         )
                 }
             </div>
