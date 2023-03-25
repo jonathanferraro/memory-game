@@ -66,7 +66,6 @@ export default function Game() {
             setPlayerNums([]);
             setNumButtonsHidden(false);
             makeNumButtonsDisabled(true);
-            setScore((prev) => prev - 1)
             if (score > highScore) {
                 setHighScore(score);
             }
