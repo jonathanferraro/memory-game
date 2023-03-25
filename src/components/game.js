@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import IqContent from "./IqContent";
 
 export default function Game() {
     const [numsToSelect, setNumsToSelect] = useState([1]);
@@ -65,7 +66,7 @@ export default function Game() {
             setPlayerNums([]);
             setNumButtonsHidden(false);
             makeNumButtonsDisabled(true);
-            setScore(0);
+            setScore((prev) => prev - 1)
             if (score > highScore) {
                 setHighScore(score);
             }
@@ -97,6 +98,9 @@ export default function Game() {
 
     // next round handler
     const nextHandler = () => {
+        if (playerDidFail) {
+            setScore(0)
+        };
         nums.sort(randomSort);
         setNumButtonsHidden(false);
         const newNumber = numsToSelect.length + 1;
@@ -112,7 +116,7 @@ export default function Game() {
         <div> 
             <h1>High Score: {highScore}</h1>
             <h2>Score: {score}</h2>
-            {playerDidFail && <h1>YOU FAILED</h1>}
+            {playerDidFail && <h1>Game Over</h1>}
             {(playerDidWin && !playerDidFail) && <h1>You Win!</h1>}
             <div className="num-buttons-container">
                 { 
@@ -131,27 +135,29 @@ export default function Game() {
                         }
                         )) :
                         (nums.map(num => (
-                            <button className="num-buttons" value={num} onClick={buttonHandler}>??</button>
+                            <button
+                             className="num-buttons" value={num} onClick={buttonHandler} style={{backgroundColor: playerNums.includes(num) ? "green" : null}}
+                             >
+                                ??
+                             </button>
                         )))
                         )
                 }
             </div>
-            <br/>
-            {(!start && !playerDidFail && !playerDidWin && showReadyButton) && <button className="game-button" onClick={readyHandler}>Ready</button>}
-            <br/>
-            <br/>
-            
+
+            {showReadyButton && <h3>Memorize the numbers and click Ready when ready</h3>}
+            {(!start && !playerDidFail && !playerDidWin && showReadyButton) && <button className="game-button ready-button" onClick={readyHandler}>Ready</button>}
+
             {(playerDidWin && !start && !playerDidFail) && <button className="game-button" onClick={nextHandler}>Next</button>}
-            <br/>
-            <br/>
             {playerDidFail && <button className="game-button" onClick={nextHandler}>Play Again?</button>}
-            {start && <button onClick={handleStart}>Start</button>}
+            {start && <button className="game-button" onClick={handleStart}>Start</button>}
 
 
 
             <br/>
             <br/>
             <br/>
+            {playerDidFail && <IqContent score={score}/>}
         </div>
     )
 }
