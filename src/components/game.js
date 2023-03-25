@@ -116,6 +116,10 @@ export default function Game() {
 
     return (
         <div> 
+            <div>
+                <h1>IQ Test - Test Your IQ</h1>
+                <h3>Memorize the highlighted numbers and click them in the correct order</h3>
+            </div>
             <h1>High Score: {highScore}</h1>
             <h2>Score: {score}</h2>
             {playerDidFail && <h1>Game Over</h1>}

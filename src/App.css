@@ -94,7 +94,33 @@
 }
 
 
+/* media queries
 
+@media only screen and (max-width: 767px) {
+  .num-buttons-container {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .num-buttons {
+    width: 40%;
+    height: 60px;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  .game-button {
+    width: 45%;
+    height: 50px;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .ready-button {
+    width: 100%;
+    height: 60px;
+    margin: 20px 0;
+    font-size: 24px;
+  }
+} */
 
 
 
